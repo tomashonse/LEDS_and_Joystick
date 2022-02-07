@@ -1,32 +1,32 @@
 
-// Nombro los pines
+// Name the pins
 
 int JOYSTICK_X = A0;
 int JOYSTICK_Y = A1;
-int LED_ARRIBA = 3;
-int LED_ABAJO = 5;
-int LED_IZQ = 6;
-int LED_DER = 9;
+int LED_UP = 3;
+int LED_DOWN = 5;
+int LED_LEFT = 6;
+int LED_RIGHT = 9;
 
 void setup () {
-  // Las entradas analógicas no necesitan inicialización
-  pinMode(LED_ARRIBA, OUTPUT);
-  pinMode(LED_ABAJO, OUTPUT);
-  pinMode(LED_IZQ, OUTPUT);
-  pinMode(LED_DER, OUTPUT);
+  // Analog inputs do not require initialization
+  pinMode(LED_UP, OUTPUT);
+  pinMode(LED_DOWN, OUTPUT);
+  pinMode(LED_LEFT, OUTPUT);
+  pinMode(LED_RIGHT, OUTPUT);
 }
 
 void loop () {
-  // El módulo joystick no se centra perfectamente, su "estado de reposo" se encuentra entre 450 y 550
+  // The joystick module is not perfectly centered, its "idle state" is between 450 and 550
   
   if(analogRead(JOYSTICK_Y) < 450) {
-    analogWrite(LED_ABAJO, map(analogRead(JOYSTICK_Y), 450, 0, 0, 255)); // map(valor leido, "cero", "final", "inicio led", "fin led")
+    analogWrite(LED_DOWN, map(analogRead(JOYSTICK_Y), 450, 0, 0, 255)); 
   } else if (analogRead(JOYSTICK_Y) > 550){
-    analogWrite(LED_ARRIBA, map(analogRead(JOYSTICK_Y), 550, 1023, 0, 255));
+    analogWrite(LED_UP, map(analogRead(JOYSTICK_Y), 550, 1023, 0, 255));
   }
   if(analogRead(JOYSTICK_X) < 450) {
-    analogWrite(LED_IZQ, map(analogRead(JOYSTICK_X), 450, 0, 0, 255)); // map(valor leido, "cero", "final", "inicio led", "fin led")
+    analogWrite(LED_LEFT, map(analogRead(JOYSTICK_X), 450, 0, 0, 255)); 
   } else if (analogRead(JOYSTICK_X) > 550){
-    analogWrite(LED_DER, map(analogRead(JOYSTICK_X), 550, 1023, 0, 255));
+    analogWrite(LED_RIGHT, map(analogRead(JOYSTICK_X), 550, 1023, 0, 255));
   }
 }
